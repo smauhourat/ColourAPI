@@ -1,0 +1,36 @@
+version: '3'
+services: 
+    ms-sql-server:
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        #image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
+        environment:
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "Aa30597131972_"
+            MSSQL_PID: Express
+        ports:
+        - "1433:1433"
+        hostname:
+            "sql_server"
+        # networks: 
+        #     docker_ntier-net2:             
+        #       ipv4_address: 172.16.230.21        
+    colour-api:
+        build: .
+        #environment:
+        #    DBServer: "ms-sql-server"
+        depends_on:
+            - ms-sql-server        
+        ports:
+        - "9090:80"    
+        hostname:
+            "api_server"
+        #restart: on-failure
+        # networks: 
+        #     docker_ntier-net2:        
+        #       ipv4_address: 172.16.230.20            
+# networks:
+#     docker_ntier-net2:       
+#         ipam:
+#             driver: default
+#             config:
+#                 - subnet: 172.16.230.0/24              
