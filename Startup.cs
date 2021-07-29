@@ -28,8 +28,10 @@ namespace ColourAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //var server = "sql_server";
-            var server = "127.0.0.1";
             //var server = "localhost";
+            //var server = "127.0.0.1";
+
+            var server = "ms-sql-server";
             //var server = Configuration["DBServer"] ?? "localhost";
             //var server = Configuration["DBServer"] ?? "ms-sql-server";
             //var port = Configuration["DBPort"] ?? "1433";
@@ -38,8 +40,10 @@ namespace ColourAPI
             var password = Configuration["DBPassword"] ?? "Aa30597131972_";
             var database = Configuration["Database"] ?? "Colours";
 
+            // services.AddDbContext<ColourContext>(options =>
+            //     options.UseSqlServer($"Server={server},{port};Database={database};User={user};Password={password}")
             services.AddDbContext<ColourContext>(options =>
-                options.UseSqlServer($"Server={server},{port};Database={database};User={user};Password={password}")
+                options.UseSqlServer($"Data Source={server};Initial Catalog={database};Persist Security Info=True;User ID={user};Password={password}")
             );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -49,7 +53,7 @@ namespace ColourAPI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseMvc();
-            PrepDB.PrePopulation(app);
+            //PrepDB.PrePopulation(app);
         }
     }
 }
