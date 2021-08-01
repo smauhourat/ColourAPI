@@ -9,6 +9,8 @@ services:
             MSSQL_PID: Express
         ports:
         - "1433:1433"
+        volumes:
+           - sql_data:/var/opt/mssql
         # hostname:
         #     "sql_server"
         # networks: 
@@ -33,4 +35,6 @@ services:
 #         ipam:
 #             driver: default
 #             config:
-#                 - subnet: 172.16.230.0/24              
+#                 - subnet: 172.16.230.0/24            
+volumes:
+  sql_data:
