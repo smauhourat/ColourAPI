@@ -10,7 +10,8 @@ services:
         ports:
         - "1433:1433"
         volumes:
-           - sql_data:/var/opt/mssql
+          #- sql_data:/var/opt/mssql
+          - ~/docker/sqlserver-data:/var/opt/mssql
         # hostname:
         #     "sql_server"
         # networks: 
@@ -33,8 +34,9 @@ services:
 # networks:
 #     docker_ntier-net2:       
 #         ipam:
+#             B
 #             driver: default
 #             config:
 #                 - subnet: 172.16.230.0/24            
-volumes:
-  sql_data:
+#volumes:
+#  sql_data:
