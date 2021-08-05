@@ -1,3 +1,11 @@
+/* Create Database if not exists*/
+USE [master]
+GO
+
+IF DB_ID('Colours') IS NOT NULL
+  set noexec on               -- prevent creation when already exists
+	
+	
 CREATE DATABASE [Colours]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -88,7 +96,7 @@ GO
 USE [Colours]
 GO
 
-/****** Object:  Table [dbo].[ColourItems]    Script Date: 28/7/2021 15:37:21 ******/
+/* Create Table */
 SET ANSI_NULLS ON
 GO
 
@@ -107,17 +115,15 @@ GO
 
 
 
-
-
+/*Insert dummy data*/
 INSERT INTO [dbo].[ColourItems](  ColourName ) VALUES ('Red')
 GO
 
 INSERT INTO [dbo].[ColourItems](  ColourName ) VALUES ('Green')
 GO
 
-
 INSERT INTO [dbo].[ColourItems](  ColourName ) VALUES ('Blue')
 GO
 
 
-
+set noexec off

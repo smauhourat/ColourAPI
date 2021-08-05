@@ -1,7 +1,9 @@
 version: '3'
 services: 
     ms-sql-server:
-        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        build:
+            context: ./database
+        #image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
         #image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
         environment:
             ACCEPT_EULA: "Y"
@@ -10,8 +12,8 @@ services:
         ports:
         - "1433:1433"
         volumes:
-          #- sql_data:/var/opt/mssql
-          - ~/docker/sqlserver-data:/var/opt/mssql
+          - sql_data:/var/opt/mssql
+            #- ~/docker/sqlserver-data:/var/opt/mssql
         # hostname:
         #     "sql_server"
         # networks: 
@@ -38,5 +40,5 @@ services:
 #             driver: default
 #             config:
 #                 - subnet: 172.16.230.0/24            
-#volumes:
-#  sql_data:
+volumes:
+  sql_data:
